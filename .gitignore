@@ -22,6 +22,4 @@
 /blocks/node_modules
 
 # composer
-/.composer/*
-!/.composer/composer.json
-!/.composer/composer.lock
+/vendor

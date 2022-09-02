@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../composer/vendor/autoload.php');
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
@@ -30,13 +30,13 @@ $dotenv->load();
 define('DB_NAME', $_ENV['MYSQL_DATABASE']);
 
 /** Database username */
-define('DB_USER',  $_ENV['MYSQL_USER']);
+define('DB_USER', $_ENV['MYSQL_USER']);
 
 /** Database password */
-define('DB_PASSWORD',  $_ENV['MYSQL_PASSWORD']);
+define('DB_PASSWORD', $_ENV['MYSQL_PASSWORD']);
 
 /** Database hostname */
-define('DB_HOST',  $_ENV['MYSQL_HOST']);
+define('DB_HOST', $_ENV['MYSQL_HOST']);
 
 /** Database charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -55,14 +55,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         $_ENV['WP_SALT_AUTH_KEY']);
-define('SECURE_AUTH_KEY',  $_ENV['WP_SALT_SECURE_AUTH_KEY']);
-define('LOGGED_IN_KEY',    $_ENV['WP_SALT_LOGGED_IN_KEY']);
-define('NONCE_KEY',        $_ENV['WP_SALT_NONCE_KEY']);
-define('AUTH_SALT',        $_ENV['WP_SALT_AUTH_SALT']);
+define('AUTH_KEY', $_ENV['WP_SALT_AUTH_KEY']);
+define('SECURE_AUTH_KEY', $_ENV['WP_SALT_SECURE_AUTH_KEY']);
+define('LOGGED_IN_KEY', $_ENV['WP_SALT_LOGGED_IN_KEY']);
+define('NONCE_KEY', $_ENV['WP_SALT_NONCE_KEY']);
+define('AUTH_SALT', $_ENV['WP_SALT_AUTH_SALT']);
 define('SECURE_AUTH_SALT', $_ENV['WP_SALT_SECURE_AUTH_SALT']);
-define('LOGGED_IN_SALT',   $_ENV['WP_SALT_LOGGED_IN_SALT']);
-define('NONCE_SALT',       $_ENV['WP_SALT_NONCE_SALT']);
+define('LOGGED_IN_SALT', $_ENV['WP_SALT_LOGGED_IN_SALT']);
+define('NONCE_SALT', $_ENV['WP_SALT_NONCE_SALT']);
 
 /**#@-*/
 

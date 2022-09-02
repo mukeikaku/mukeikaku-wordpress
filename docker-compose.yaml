@@ -33,7 +33,7 @@ services:
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./.composer:/var/www/composer
+      - ./vendor:/var/www/vendor
       - ./.wp:/var/www/html
       - ./.env:/var/www/.env
       - ./theme:/var/www/html/wp-content/themes/theme
