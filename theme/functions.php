@@ -37,10 +37,10 @@ Theme\Media::init();
 Theme\PostTypeTaxonomy::init();
 Theme\QueryHooks::init();
 Theme\RedirectTo404::init();
-Theme\RestApi::init();
 Theme\Security::init();
 Theme\WpHead::init();
 
+// Theme\RestApi::init();
 // Theme\Acf::init();
 // Theme\CloudFrontCacheClear::init();
 // Theme\GithubActionsRerun::init();

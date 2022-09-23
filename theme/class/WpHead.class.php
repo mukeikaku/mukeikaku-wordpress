@@ -42,5 +42,16 @@ class WpHead
 
         // WordPressバージョンを非表示
         remove_action('wp_head', 'wp_generator');
+
+        // メタ追加
+        add_action('wp_head', [$this, 'add_meta']);
+    }
+
+    public function add_meta(): void
+    {
+        echo <<<EOF
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        EOF;
     }
 }

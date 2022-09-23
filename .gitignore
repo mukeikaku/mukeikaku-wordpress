@@ -1,5 +1,5 @@
 # dependencies
-/node_modules
+node_modules
 
 # misc
 .DS_Store
@@ -23,3 +23,6 @@
 
 # composer
 /vendor
+
+asset-manifest.json
+assets
