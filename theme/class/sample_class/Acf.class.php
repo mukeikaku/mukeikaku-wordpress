@@ -32,10 +32,10 @@ class Acf
         // add_action('admin_menu', [$this, 'remove_acf_setting_page'], 999);
 
         // 設定ページ作成
-        // add_action('acf/init', [$this, 'display_acf_option_page']);
+        // add_action('admin_menu', [$this, 'display_acf_option_page']);
 
         // 設定サブページ作成
-        // add_action('acf/init', [$this, 'display_acf_option_sub_page']);
+        // add_action('admin_menu', [$this, 'display_acf_option_sub_page']);
 
         // Google Maps API Key設定
         // add_filter('acf/fields/google_map/api', 'set_google_map_api');
@@ -49,7 +49,6 @@ class Acf
 
     public function display_acf_option_page(): void
     {
-
         if (function_exists('acf_add_options_page')) {
             acf_add_options_page(
                 [
@@ -123,7 +122,6 @@ class Acf
 
     public function export(): ?bool
     {
-
         $selected = [];
 
         /**
@@ -148,18 +146,21 @@ class Acf
         $json = array();
 
         // bail early if no keys
-        if (!$selected) return false;
+        if (!$selected) {
+            return false;
+        }
 
 
         // construct JSON
         foreach ($selected as $key) {
-
             // load field group
             $field_group = acf_get_field_group($key);
 
 
             // validate field group
-            if (empty($field_group)) continue;
+            if (empty($field_group)) {
+                continue;
+            }
 
 
             // load fields
@@ -197,7 +198,6 @@ class Acf
         $data = "<?php if( wp_get_environment_type() !== 'local' && function_exists('acf_add_local_field_group') ):" . "\r\n" . "\r\n";
 
         foreach ($json as $field_group) {
-
             // code
             $code = var_export($field_group, true);
 
@@ -219,7 +219,7 @@ class Acf
         file_put_contents(STYLESHEETPATH . '/functions/libs/exported_acf_settings.php', $data);
     }
 
-    function remove_acf_setting_page(): void
+    public function remove_acf_setting_page(): void
     {
         remove_menu_page('edit.php?post_type=acf-field-group');
     }
