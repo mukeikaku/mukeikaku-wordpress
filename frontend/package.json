@@ -4,7 +4,6 @@
   "description": "A boilerplate for multi-page web application",
   "scripts": {
     "test": "jest",
-    "prepare": "husky install",
     "build": "webpack --node-env=production && bin/compress-images.js && bin/convert-images.js",
     "dev": "webpack --node-env=development --watch"
   },
@@ -37,11 +36,11 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
     "fast-glob": "^3.2.7",
-    "html-webpack-plugin": "^5.3.2",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "mini-css-extract-plugin": "^2.0.0",
     "node-filter-async": "^2.0.0",
+    "postcss-import": "^15.0.0",
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.1",
     "sharp": "^0.30.5",

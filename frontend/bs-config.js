@@ -5,18 +5,19 @@ module.exports = {
   server: process.env.WEBPACK_BROWSER_SYNC_PROXY
     ? false
     : process.env.WEBPACK_DIST_RELATIVE_PATH,
-  https:
-    !!process.env.WEBPACK_BROWSER_SYNC_HTTPS_CERT &&
-    !!process.env.WEBPACK_BROWSER_SYNC_HTTPS_KEY
-      ? {
-          cert: process.env.WEBPACK_BROWSER_SYNC_HTTPS_CERT,
-          key: process.env.WEBPACK_BROWSER_SYNC_HTTPS_KEY
-        }
-      : false,
+  // https:
+  //   !!process.env.WEBPACK_BROWSER_SYNC_HTTPS_CERT &&
+  //   !!process.env.WEBPACK_BROWSER_SYNC_HTTPS_KEY
+  //     ? {
+  //         cert: process.env.WEBPACK_BROWSER_SYNC_HTTPS_CERT,
+  //         key: process.env.WEBPACK_BROWSER_SYNC_HTTPS_KEY
+  //       }
+  //     : false,
   open: false,
-  files: [process.env.WEBPACK_DIST_RELATIVE_PATH],
+  files: [process.env.WEBPACK_DIST_RELATIVE_PATH,'../theme/**.php'],
   // This setting doesn't work now
   // Reloading connot be avoid even if changed file is CSS
   // https://github.com/Va1/browser-sync-webpack-plugin/pull/79
-  injectChanges: true
+  injectChanges: true,
+  ghostMode: false
 }

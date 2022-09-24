@@ -40,5 +40,5 @@ services:
       - ./plugins:/var/www/html/wp-content/plugins
       - ./wp-config.php:/var/www/html/wp-config.php
       - ./.htaccess:/var/www/html/.htaccess
-      - ./mpa-boilerplate/dist/assets:/var/www/html/assets
-      - ./mpa-boilerplate/dist/asset-manifest.json:/var/www/html/asset-manifest.json
+      - ./frontend/dist/assets:/var/www/html/assets
+      - ./frontend/dist/asset-manifest.json:/var/www/html/asset-manifest.json

@@ -3,14 +3,11 @@ const path = require('path')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin')
 const bsConfig = require('./bs-config.js')
 const svgoConfig = require('./svgo.config.js')
-
-const legacyMode = process.env.WEBPACK_LEGACY?.toLowerCase() === 'on'
 
 module.exports = {
   entry: {
@@ -35,14 +32,12 @@ module.exports = {
         test: [/\.ts$/, /\.js$/],
         exclude: /node_modules/,
         use: [
-          legacyMode
-            ? 'ts-loader'
-            : {
-                loader: 'esbuild-loader',
-                options: {
-                  loader: 'ts'
-                }
-              }
+          {
+            loader: 'esbuild-loader',
+            options: {
+              loader: 'ts'
+            }
+          }
         ]
       },
       {
@@ -54,9 +49,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                config: legacyMode
-                  ? path.resolve(__dirname, '.postcssrc.legacy.js')
-                  : path.resolve(__dirname, '.postcssrc.js')
+                config: path.resolve(__dirname, '.postcssrc.js')
               }
             }
           }
@@ -69,7 +62,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
 
-  target: legacyMode ? ['web', 'es5'] : ['web'],
+  target: ['web'],
 
   plugins: [
     new BrowserSyncPlugin(bsConfig),
@@ -88,17 +81,6 @@ module.exports = {
     // because each directories may not exist
     new CopyPlugin({
       patterns: [
-        {
-          from: path.resolve(
-            __dirname,
-            process.env.WEBPACK_PUBLIC_RELATIVE_PATH
-          ),
-          to: '[path][name][ext]',
-          globOptions: {
-            ignore: ['**/.*']
-          },
-          noErrorOnMissing: true
-        },
         {
           from: path.resolve(
             __dirname,
@@ -122,20 +104,10 @@ module.exports = {
         output: {
           filename: 'assets/sprites/index.svg',
           svgo: svgoConfig,
-          svg4everybody: legacyMode
+          // svg4everybody: legacyMode
         }
       }
     ),
-
-    new HtmlWebpackPlugin({
-      template: path.resolve(
-        __dirname,
-        `${process.env.WEBPACK_SRC_RELATIVE_PATH}/templates/index.ejs`
-      ),
-      filename: 'index.html',
-      inject: false,
-      templateParameters: {}
-    }),
 
     new MiniCssExtractPlugin({
       filename: '[name].[fullhash].css'
